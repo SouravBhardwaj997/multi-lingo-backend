@@ -1,6 +1,7 @@
 import app from "./app";
+import { env } from "./config/env";
 import connectDB from "./lib/db";
-const PORT = process.env.PORT || 3000;
+const PORT = env.PORT;
 
 app.listen(PORT, () => {
   connectDB();

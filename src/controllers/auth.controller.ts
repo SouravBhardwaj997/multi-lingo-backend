@@ -5,7 +5,9 @@ export function login(req: Request, res: Response) {
 }
 
 export function signup(req: Request, res: Response) {
-  // return res.json({ message: "login" });
+  try {
+    const { fullName, email, password } = req.body;
+  } catch (error) {}
 }
 export function logout(req: Request, res: Response) {
   return res.json({ message: "login" });
