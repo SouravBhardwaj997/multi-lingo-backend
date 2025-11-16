@@ -1,8 +1,9 @@
 import { z } from "zod";
 import { Request, Response, NextFunction } from "express";
-import { SignupInput } from "../schemas/auth.schema";
+
 export const validate =
-  (schema: z.Schema) => (req: Request, res: Response, next: NextFunction) => {
+  <T extends z.ZodTypeAny>(schema: T) =>
+  (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.body);
 
     if (!result.success) {
@@ -13,6 +14,6 @@ export const validate =
       });
     }
 
-    req.body = result.data;
+    req.body = result.data as z.infer<T>;
     next();
   };
